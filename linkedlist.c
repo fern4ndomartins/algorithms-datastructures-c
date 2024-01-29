@@ -15,9 +15,10 @@ node_t* pushnode(node_t *n, char * dt) {
 }
 
 // function to remove the node from the topmost position
-node_t* popnode(node_t *n) {
-    n = n->next;
-    return n;
+node_t * removeLast(node_t *n) {
+    node_t *f = n->next;
+    free(n);
+    return f;
 }
 
 // function that iterates through the list printing its values
@@ -42,6 +43,10 @@ int main() {
     first = pushnode(first, "fifth node");
     first = pushnode(first, "giraffes!!!");
     first = pushnode(first, "this node will be removed :(");
-    first = popnode(first);
+    first = removeLast(first);
     readall(first);
+    while (1) {
+        first = pushnode(first, "this node will be removed :(");
+        first = removeLast(first);
+    }
 }
